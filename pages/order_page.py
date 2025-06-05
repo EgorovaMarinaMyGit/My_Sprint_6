@@ -1,0 +1,37 @@
+import allure
+from pages.base_page import BasePage
+from locators.main_page_locators import MainPageLocators
+from locators.order_page_locators import OrderPageLocators
+
+class OrderPage(BasePage):
+  
+    @allure.step('Создание заказа')
+    def set_fields_to_order(self, order_list):
+        self.add_text_to_element(OrderPageLocators.NAME_FIELD, order_list['имя'])
+        self.add_text_to_element(OrderPageLocators.SURNAME_FIELD, order_list['фамилия'])
+        self.add_text_to_element(OrderPageLocators.ADRESS_FIELD, order_list['адрес'])
+        self.click_to_element(OrderPageLocators.METRO_FIELD)
+        self.add_text_to_element(OrderPageLocators.METRO_FIELD, "Черкизовская")
+        self.click_to_element(OrderPageLocators.STATION_LIST)
+        self.add_text_to_element(OrderPageLocators.TELEPHONE_FIELD, order_list['телефон'])
+        self.click_to_element(OrderPageLocators.NEXT_BUTTON)
+        self.find_element_with_wait(OrderPageLocators.ABOUT_RENT_TITLE)
+        self.click_to_element(OrderPageLocators.DATE_FIELD)
+        self.click_to_element(OrderPageLocators.DATE_IN_CALENDAR)
+        self.click_to_element(OrderPageLocators.RENTAL_PERIOD_FIELD)
+        self.click_to_element(OrderPageLocators.DAYS_OF_RENT)
+        self.click_to_element(OrderPageLocators.BLACK_COLOR_CHECKBOX)
+        self.add_text_to_element(OrderPageLocators.COMMENT_FOR_COURIER_FIELD, order_list['комментарий для курьера'])
+        self.click_to_element(MainPageLocators.ORDER_BUTTON_FOOTER)
+        self.find_element_with_wait(OrderPageLocators.YES_BUTTON)
+        self.click_to_element(OrderPageLocators.YES_BUTTON)
+
+        
+    def check_order_text(self, locator):
+        return self.get_text_from_element(locator) == 'Заказ оформлен'
+    
+
+    def swith_to_another_window(self, driver):
+        self.click_to_element(OrderPageLocators.LOGO_YANDEX)
+        windows_list = self.driver.window_handles
+        driver.switch_to.window(windows_list[-1])
