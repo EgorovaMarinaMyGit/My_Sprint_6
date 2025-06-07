@@ -39,3 +39,8 @@ class BasePage:
     def scroll_to_element(self, locator):
         element = self.driver.find_element(*locator)
         self.driver.execute_script("arguments[0].scrollIntoView();", element) 
+
+    def swith_to_another_window(self, driver, locator):
+        self.click_to_element(*locator)
+        windows_list = self.driver.window_handles
+        driver.switch_to.window(windows_list[-1])

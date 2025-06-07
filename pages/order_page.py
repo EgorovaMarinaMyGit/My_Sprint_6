@@ -4,7 +4,8 @@ from locators.main_page_locators import MainPageLocators
 from locators.order_page_locators import OrderPageLocators
 
 class OrderPage(BasePage):
-  
+
+
     @allure.step('Создание заказа')
     def set_fields_to_order(self, order_list):
         self.add_text_to_element(OrderPageLocators.NAME_FIELD, order_list['имя'])
@@ -26,12 +27,34 @@ class OrderPage(BasePage):
         self.find_element_with_wait(OrderPageLocators.YES_BUTTON)
         self.click_to_element(OrderPageLocators.YES_BUTTON)
 
-        
-    def check_order_text(self, locator):
-        return self.get_text_from_element(locator) == 'Заказ оформлен'
-    
 
-    def swith_to_another_window(self, driver):
-        self.click_to_element(OrderPageLocators.LOGO_YANDEX)
-        windows_list = self.driver.window_handles
-        driver.switch_to.window(windows_list[-1])
+    @allure.step('Проверка, что после нажатия на "Показать заказ" и потом на лого Яндекса ' \
+    'происходит переход на страницу Дзен Яндекс')
+    def click_to_yandex_logo_and_switch_to_dzen(self):
+        self.click_to_element(OrderPageLocators.VIEW_STATUS_TITLE)
+        self.find_element_with_wait(OrderPageLocators.LOGO_YANDEX)
+        self.swith_to_another_window(OrderPageLocators.LOGO_YANDEX)
+
+
+    @allure.step('Проверка, что при переходе на сайт Дзен Яндекс появляется модальное окно ' \
+    'на скачивание Яндекс браузера')   
+    def check_visibility_of_dzen(self):
+        self.find_element_with_wait(OrderPageLocators.YES_ON_MODAL_WINDOW_DZEN).is_displayed()
+
+
+    @allure.step('Проверка, что после нажатия на "Показать заказ" и потом на лого Самоката ' \
+    'происходит переход на главную страницу Самоката')
+    def click_to_samokat_logo_and_switch_to_main_page(self):
+        self.find_element_with_wait(OrderPageLocators.VIEW_STATUS_TITLE)
+        self.click_to_element(OrderPageLocators.VIEW_STATUS_TITLE)
+        self.find_element_with_wait(OrderPageLocators.LOGO_SAMOKAT)
+        self.click_to_element(OrderPageLocators.LOGO_SAMOKAT)
+
+
+    @allure.step('Проверка, что при переходе на главную страницу Самоката Яндекс отображется ' \
+    'лого самоката')
+    def check_visibility_of_samokat_png(self):
+        self.find_element_with_wait(MainPageLocators.PNG_SAMOKAT).is_displayed()
+
+
+    

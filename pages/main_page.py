@@ -20,3 +20,8 @@ class MainPage(BasePage):
         self.click_to_question(num)
         text = self.get_answer_on_question(num)
         return text == expected_text
+    
+    @allure.step('Нажатие на кнопку с cookie')
+    def click_to_cookie(self):
+        element = self.find_element_with_wait(MainPageLocators.COOKIE_LOCATOR)
+        element.click()

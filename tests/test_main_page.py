@@ -10,11 +10,11 @@ from pages.main_page import MainPage
 from data import url_main_page
 from data import answers_list
 
-@allure.title("Тесты на проверку вопросов")
-@allure.description("Тест проверяет, что когда нажимаешь на вопрос, открывается соответствующий " \
-"текст ответа")
 class TestMainPage:
     
+    @allure.title("Тест проверяет, что когда нажимаешь на вопрос, открывается соответствующий " \
+"текст ответа")
+
     @pytest.mark.parametrize('num', [0,1,2,3,4,5,6,7])
 
     def test_answer_question(self, main_page, num): 

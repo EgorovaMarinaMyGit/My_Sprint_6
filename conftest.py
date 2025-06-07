@@ -10,7 +10,6 @@ from pages.order_page import OrderPage
 def driver():
     firefox = webdriver.Firefox()
     firefox.maximize_window()
-    #driver.set_window_size(1280, 720)
     yield firefox
     firefox.quit()
 
