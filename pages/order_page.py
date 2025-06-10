@@ -1,6 +1,5 @@
 import allure
 from pages.base_page import BasePage
-from locators.main_page_locators import MainPageLocators
 from locators.order_page_locators import OrderPageLocators
 
 class OrderPage(BasePage):
@@ -23,9 +22,15 @@ class OrderPage(BasePage):
         self.click_to_element(OrderPageLocators.DAYS_OF_RENT)
         self.click_to_element(OrderPageLocators.BLACK_COLOR_CHECKBOX)
         self.add_text_to_element(OrderPageLocators.COMMENT_FOR_COURIER_FIELD, order_list['комментарий для курьера'])
-        self.click_to_element(MainPageLocators.ORDER_BUTTON_FOOTER)
+        self.click_to_element(OrderPageLocators.ORDER_BUTTON_FOOTER)
         self.find_element_with_wait(OrderPageLocators.YES_BUTTON)
         self.click_to_element(OrderPageLocators.YES_BUTTON)
+
+
+    @allure.step('Проверка, что при успешном оформлении заказа появляется модальное окно 
+    'с кнопкой Посмотреть заказ')
+    def check_visibility_of_view_status_button(self):
+        self.find_element_with_wait(OrderPageLocators.VIEW_STATUS_TITLE).is_displayed()
 
 
     @allure.step('Проверка, что после нажатия на "Показать заказ" и потом на лого Яндекса ' \
@@ -54,7 +59,7 @@ class OrderPage(BasePage):
     @allure.step('Проверка, что при переходе на главную страницу Самоката Яндекс отображется ' \
     'лого самоката')
     def check_visibility_of_samokat_png(self):
-        self.find_element_with_wait(MainPageLocators.PNG_SAMOKAT).is_displayed()
+        self.find_element_with_wait(OrderPageLocators.PNG_SAMOKAT).is_displayed()
 
 
     

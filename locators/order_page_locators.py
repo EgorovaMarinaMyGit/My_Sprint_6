@@ -18,8 +18,10 @@ class OrderPageLocators:
     COMMENT_FOR_COURIER_FIELD = (By.XPATH, "//input[@placeholder='Комментарий для курьера']") # поле "* Комментарий для курьера"
     YES_BUTTON = (By.XPATH, "//button[contains(text(),'Да')]") # кнопка "Да"
     ORDER_PLACED_TITLE = (By.XPATH, "//div[@class='Order-Text__2broi' and contains(text(), 'Номер заказа')]")
+    ORDER_BUTTON_FOOTER = (By.XPATH, "//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and contains(text(), 'Заказать')]") # нижняя кнопка "Заказать"
     VIEW_STATUS_TITLE = (By.XPATH, "//button[contains(text(),'Посмотреть статус')]") # кнопка "Посмотреть статус"
     LOGO_YANDEX = (By.XPATH, "//img[@alt='Yandex']") # лого Яндекс
+    PNG_SAMOKAT = (By.XPATH, "//img[@alt='Scooter blueprint']") # изображение самоката
     LOGO_SAMOKAT = (By.XPATH, "//img[@alt='Scooter']") # лого Самокат
     LOGO_DZEN = (By.XPATH, "//path[@fill='#202022']") # лого Дзена (звёздочка)
     YES_ON_MODAL_WINDOW_DZEN = (By.XPATH, "//a[@title='Да']")

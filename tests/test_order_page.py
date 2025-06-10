@@ -3,11 +3,8 @@ import pytest
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
-#from selenium.webdriver.support import expected_conditions
 from locators.main_page_locators import MainPageLocators
 from locators.order_page_locators import OrderPageLocators
-#from pages.base_page import BasePage
-#from pages.main_page import MainPage
 from pages.order_page import OrderPage
 from data import url_main_page
 from data import first_order_list
@@ -32,7 +29,7 @@ class TestOrderPage:
         page_order = OrderPage(driver)
         page_order.set_fields_to_order(order_list)
         
-        assert page_order.find_element_with_wait(OrderPageLocators.VIEW_STATUS_TITLE).is_displayed()
+        assert page_order.check_visibility_of_view_status_button()
 
 
     @pytest.mark.parametrize(
