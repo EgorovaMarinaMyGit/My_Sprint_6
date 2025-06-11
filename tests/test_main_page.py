@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators.main_page_locators import MainPageLocators
-from pages.base_page import BasePage
 from pages.main_page import MainPage
 from data import url_main_page
 from data import answers_list
